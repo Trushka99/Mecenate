@@ -1,50 +1,80 @@
-# Welcome to your Expo app 👋
+# 📱 Expo React Native App (Test Task)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Это мобильное приложение, разработанное с использованием React Native + Expo в рамках тестового задания.
 
-## Get started
+Проект демонстрирует базовую архитектуру, разделение ответственности по слоям, работу с UI-компонентами, типизацией и структурированием приложения.
 
-1. Install dependencies
+## 🚀 Tech Stack
 
-   ```bash
-   npm install
-   ```
+- React Native (Expo)
+- TypeScript
+- Native StyleSheet
+- Custom design tokens
+- MobX
 
-2. Start the app
+## 🧠 State Management
 
-   ```bash
-   npx expo start
-   ```
+В проекте используется комбинация **React Query + MobX**:
 
-In the output, you'll find options to open the app in a
+- **React Query** — отвечает за серверное состояние (загрузка, кеширование и пагинация постов)
+- **MobX** — используется для UI-состояния, не связанного с API
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### MobX в проекте
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+MobX применяется для выбора поста, в дальнейшем может быть использованно для открытия отдельного поста с полной информацией без прокидывания пропсов и роутинга
 
-## Get a fresh project
+### Почему MobX здесь уместен
 
-When you're ready, run:
+Такое разделение позволяет:
+- не смешивать серверные данные и UI-состояние
+- упростить управление состоянием интерфейса
+- сохранить масштабируемость архитектуры
 
-```bash
-npm run reset-project
-```
+React Query остаётся ответственным только за данные с сервера, а MobX — за состояние интерфейса пользователя.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 📦 Installation
 
-## Learn more
+Клонируйте репозиторий:
 
-To learn more about developing your project with Expo, look at the following resources:
+git clone <repo-url>  
+cd <project-name>
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Установите зависимости:
 
-## Join the community
+npm install
 
-Join our community of developers creating universal apps.
+## ▶️ Running the project
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+npx expo start
+
+После запуска доступны варианты:
+- Expo Go (скан QR-кода)
+- Android Emulator
+- iOS Simulator
+- В браузере (http://localhost:8081)
+
+## 📱 Запуск на телефоне (Expo Go)
+
+1. Установите Expo Go из App Store / Google Play  
+2. Запустите проект:
+
+npx expo start
+
+3. Отсканируйте QR-код из терминала или браузера
+
+## 🧱 Project Architecture
+
+src/
+├── api/           (запросы к API)
+├── components/    (переиспользуемые компоненты)
+│   └── postParts  (компоненты поста)
+│   └── ui/        (базовые UI элементы)
+├── screens/       (экраны приложения)
+├── theme/         (дизайн-токены)
+├── types/         (TypeScript типы)
+├── store/         (store MobX) 
+
+## 🧩 Entry Point
+
+App.tsx — корневой компонент  
+fonts.ts — подключение шрифтов
