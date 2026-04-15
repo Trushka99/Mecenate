@@ -36,7 +36,7 @@ React Query остаётся ответственным только за дан
 
 Клонируйте репозиторий:
 
-git clone git@github.com:Trushka99/Mecenate.git 
+git clone https://github.com/Trushka99/Mecenate.git Mecenate 
 cd Mecenate
 
 Установите зависимости:
