@@ -1,8 +1,9 @@
 import { Post } from "@/src/types/post";
-import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { tokens } from "../../theme/tokens";
+import PaidPlaceholder from "../PaidPlaceholder";
+
 const styles = StyleSheet.create({
   previewWrapper: {
     position: "relative",
@@ -41,13 +42,7 @@ const styles = StyleSheet.create({
     paddingTop: tokens.spacing.sm,
     paddingBottom: tokens.spacing.lg,
   },
-  square: {
-    height: tokens.sizes.xs,
-    width: "40%",
-    borderRadius: 22,
-    marginBottom: tokens.spacing.sm,
-  },
-  bigSquare: { height: tokens.sizes.md, width: "100%", borderRadius: 22 },
+
   title: {
     fontSize: tokens.typography.fontSize.lg,
     fontFamily: tokens.typography.fontFamily.bold,
@@ -58,41 +53,28 @@ const styles = StyleSheet.create({
 });
 
 const PostContent = ({ post }: { post: Post }) => {
-  const [full, setFull] = useState<boolean>(false);
+  const [full, setFull] = useState(false);
+
+  if (post.tier === "paid") {
+    return (
+      <View style={styles.content}>
+        <PaidPlaceholder />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.content}>
-      {post.tier === "free" ? (
-        <Text style={styles.title}>{post.title}</Text>
-      ) : (
-        <LinearGradient
-          colors={["rgba(238, 239, 241, 0.8)", "rgba(238, 239, 241, 0.8)"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={styles.square}
-        />
-      )}
+      <Text style={styles.title}>{post.title}</Text>
+
       <View style={styles.previewWrapper}>
-        {post.tier === "free" ? (
-          <Text style={styles.preview} numberOfLines={full ? 0 : 3}>
-            {full ? post.body : post.preview}
-          </Text>
-        ) : (
-          <LinearGradient
-            colors={["rgba(238, 239, 241, 0.8)", "rgba(238, 239, 241, 0.8)"]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={styles.bigSquare}
-          />
-        )}
+        <Text style={styles.preview} numberOfLines={full ? 0 : 3}>
+          {full ? post.body : post.preview}
+        </Text>
 
         {!full && post.body !== "" && (
           <>
-            <LinearGradient
-              colors={["rgba(255,255,255,0)", "rgba(255,255,255,0.85)", "#fff"]}
-              style={styles.fade}
-              pointerEvents="none"
-            />
+            <View style={styles.fade} />
 
             <Pressable onPress={() => setFull(true)} style={styles.moreBtn}>
               <Text style={styles.more}>Показать ещё</Text>
@@ -103,4 +85,5 @@ const PostContent = ({ post }: { post: Post }) => {
     </View>
   );
 };
+
 export default PostContent;
