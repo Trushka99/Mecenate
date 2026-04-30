@@ -5,7 +5,8 @@ export const typography = {
     bold: "Manrope_700Bold",
   },
   fontSize: {
-    sm: 13,
+    xs: 13,
+    sm: 14,
     md: 15,
     lg: 18,
   },

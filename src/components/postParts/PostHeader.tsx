@@ -7,20 +7,20 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 16,
-    padding: 16,
+    paddingHorizontal: tokens.spacing.lg,
+    padding: tokens.spacing.lg,
   },
   avatarWrapper: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: tokens.sizes.md,
+    height: tokens.sizes.md,
+    borderRadius: tokens.spacing.xl,
     overflow: "hidden",
-    marginRight: 12,
+    marginRight: tokens.spacing.md,
   },
 
   avatar: {
-    width: 40,
-    height: 40,
+    width: tokens.sizes.md,
+    height: tokens.sizes.md,
     borderRadius: 20,
     overflow: "hidden",
   },
@@ -62,7 +62,9 @@ const PostHeader = ({ post }: { post: Post }) => {
             style={styles.avatar}
             player={player}
             nativeControls={false}
-            allowsFullscreen={false}
+            fullscreenOptions={{
+              enable: false,
+            }}
             allowsPictureInPicture={false}
           />
         ) : (
@@ -75,7 +77,9 @@ const PostHeader = ({ post }: { post: Post }) => {
           style={styles.avatar}
           player={player}
           nativeControls={false}
-          allowsFullscreen={false}
+          fullscreenOptions={{
+            enable: false,
+          }}
           allowsPictureInPicture={false}
         />
       </View>

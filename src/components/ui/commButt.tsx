@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   footerText: {
     fontFamily: tokens.typography.fontFamily.bold,
     lineHeight: tokens.typography.lineHeight.lg,
-    fontSize: tokens.typography.fontSize.sm,
+    fontSize: tokens.typography.fontSize.xs,
     color: tokens.colors.text.secondary,
   },
   iconCont: {

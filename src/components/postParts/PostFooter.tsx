@@ -1,3 +1,4 @@
+import { tokens } from "@/src/theme/tokens";
 import { Post } from "@/src/types/post";
 import { StyleSheet, View } from "react-native";
 import CommButt from "../ui/commButt";
@@ -6,16 +7,22 @@ const styles = StyleSheet.create({
   footer: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 16,
-    paddingBottom: 12,
-    gap: 8,
+    paddingHorizontal: tokens.spacing.lg,
+    paddingBottom: tokens.spacing.md,
+    gap: tokens.spacing.sm,
   },
 });
 
-const PostFooter = ({ post }: { post: Post }) => {
+const PostFooter = ({
+  post,
+  onLike,
+}: {
+  post: Post;
+  onLike: (postId: string) => Promise<void>;
+}) => {
   return (
     <View style={styles.footer}>
-      <LikeButt post={post} />
+      <LikeButt onLike={onLike} post={post} />
       <CommButt post={post} />
     </View>
   );

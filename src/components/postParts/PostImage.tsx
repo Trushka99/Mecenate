@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
     gap: 13,
   },
   money: {
-    width: 42,
-    height: 42,
+    width: tokens.sizes.sm,
+    height: tokens.sizes.sm,
     borderRadius: 10,
     backgroundColor: tokens.colors.text.purple,
     display: "flex",

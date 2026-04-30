@@ -1,18 +1,18 @@
 import { makeAutoObservable } from "mobx";
-
+import { Post } from "../types/post";
 class FeedStore {
-  selectedPostId: string | null = null;
+  selectedPost: Post | null = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  selectPost(id: string) {
-    this.selectedPostId = id;
+  selectPost(post: Post) {
+    this.selectedPost = post;
   }
 
   clearSelectedPost() {
-    this.selectedPostId = null;
+    this.selectedPost = null;
   }
 }
 

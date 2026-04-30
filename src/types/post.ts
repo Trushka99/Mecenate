@@ -8,7 +8,7 @@ export interface Author {
   isVerified: boolean;
 }
 
-export type PostTier = "free" | "paid" ; 
+export type PostTier = "free" | "paid";
 
 export interface Post {
   id: string;
@@ -23,3 +23,17 @@ export interface Post {
   tier: PostTier;
   createdAt: string;
 }
+export type Comment = {
+  id: string;
+  postId: string;
+  text: string;
+  createdAt: string;
+  author: {
+    id: string;
+    username: string;
+    displayName: string;
+    avatarUrl: string;
+    isVerified: boolean;
+  };
+};
+export type TabValue = "all" | "free" | "paid";

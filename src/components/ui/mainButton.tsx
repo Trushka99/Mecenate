@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     height: 42,
     borderRadius: 14,
     backgroundColor: "rgba(78, 17, 164, 1)",
-    paddingVertical: 8,
+    paddingVertical: tokens.spacing.sm,
     justifyContent: "center",
     alignItems: "center",
   },

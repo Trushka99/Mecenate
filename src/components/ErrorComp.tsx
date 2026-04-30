@@ -1,4 +1,5 @@
 import { Image, StyleSheet, Text, View } from "react-native";
+import { tokens } from "../theme/tokens";
 import MainButton from "./ui/mainButton";
 const styles = StyleSheet.create({
   outer: {
@@ -7,7 +8,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   container: {
-    gap: "16px",
+    gap: tokens.spacing.lg,
     alignItems: "center",
   },
 });

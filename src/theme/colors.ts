@@ -4,8 +4,11 @@ export const colors = {
     secondary: "rgba(87, 98, 111, 1)",
     purple: "rgba(97, 21, 205, 1)",
     white: "rgba(255, 234, 241, 1)",
+    grey: "rgba(104, 114, 125, 1)",
+    input: "rgba(164, 170, 176, 1)",
   },
   background: {
+    purple: "rgba(97, 21, 205, 1)",
     primary: "rgba(255, 255, 255, 1)",
     secondary: "rgba(245, 248, 253, 1)",
     button: "rgba(239, 242, 247, 1)",

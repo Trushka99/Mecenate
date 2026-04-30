@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 0,
     bottom: 0,
-    paddingLeft: 6,
+    paddingLeft: tokens.spacing.xs,
   },
 
   more: {
@@ -37,23 +37,23 @@ const styles = StyleSheet.create({
   },
 
   content: {
-    paddingHorizontal: 16,
-    paddingTop: 8,
-    paddingBottom: 16,
+    paddingHorizontal: tokens.spacing.lg,
+    paddingTop: tokens.spacing.sm,
+    paddingBottom: tokens.spacing.lg,
   },
   square: {
-    height: 26,
+    height: tokens.sizes.xs,
     width: "40%",
     borderRadius: 22,
-    marginBottom: 8,
+    marginBottom: tokens.spacing.sm,
   },
-  bigSquare: { height: 40, width: "100%", borderRadius: 22 },
+  bigSquare: { height: tokens.sizes.md, width: "100%", borderRadius: 22 },
   title: {
     fontSize: tokens.typography.fontSize.lg,
     fontFamily: tokens.typography.fontFamily.bold,
     lineHeight: tokens.typography.lineHeight.lg,
     color: tokens.colors.text.primary,
-    marginBottom: 8,
+    marginBottom: tokens.spacing.xs,
   },
 });
 

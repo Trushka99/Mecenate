@@ -1,7 +1,16 @@
 import { tokens } from "@/src/theme/tokens";
 import { Post } from "@/src/types/post";
-import { StyleSheet, Text, View } from "react-native";
+import * as Haptics from "expo-haptics";
+import { Pressable, StyleSheet, Text } from "react-native";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from "react-native-reanimated";
 import Svg, { Path } from "react-native-svg";
+
+const AnimatedText = Animated.createAnimatedComponent(Text);
+
 const styles = StyleSheet.create({
   footerItem: {
     flexDirection: "row",
@@ -15,26 +24,59 @@ const styles = StyleSheet.create({
   },
   liked: {
     backgroundColor: tokens.colors.background.liked,
-    color: tokens.colors.text.white,
   },
   footerText: {
     fontFamily: tokens.typography.fontFamily.bold,
-    lineHeight: tokens.typography.lineHeight.lg,
-    fontSize: tokens.typography.fontSize.sm,
+    fontSize: tokens.typography.fontSize.xs,
     color: tokens.colors.text.secondary,
+  },
+  likedText: {
+    color: tokens.colors.text.white,
   },
   iconCont: {
     height: 24,
     width: 24,
-    display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
 });
-const LikeButt = ({ post }: { post: Post }) => {
+
+const LikeButt = ({
+  post,
+  onLike,
+}: {
+  post: Post;
+  onLike: (postId: string) => Promise<void>;
+}) => {
+  const scale = useSharedValue(1);
+  const countScale = useSharedValue(1);
+
+  const handlePress = () => {
+    onLike(post.id);
+
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+
+    scale.value = 1.3;
+    scale.value = withSpring(1);
+
+    countScale.value = 1.4;
+    countScale.value = withSpring(1);
+  };
+
+  const iconStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
+
+  const countStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: countScale.value }],
+  }));
+
   return (
-    <View style={[styles.footerItem, post.isLiked && styles.liked]}>
-      <View style={styles.iconCont}>
+    <Pressable
+      onPress={handlePress}
+      style={[styles.footerItem, post.isLiked && styles.liked]}
+    >
+      <Animated.View style={[styles.iconCont, iconStyle]}>
         {post.isLiked ? (
           <Svg width={17} height={15} viewBox="0 0 17 15">
             <Path
@@ -50,11 +92,19 @@ const LikeButt = ({ post }: { post: Post }) => {
             />
           </Svg>
         )}
-      </View>
-      <Text style={[styles.footerText, post.isLiked && styles.liked]}>
+      </Animated.View>
+
+      <AnimatedText
+        style={[
+          styles.footerText,
+          post.isLiked && styles.likedText,
+          countStyle,
+        ]}
+      >
         {post.likesCount}
-      </Text>
-    </View>
+      </AnimatedText>
+    </Pressable>
   );
 };
+
 export default LikeButt;
