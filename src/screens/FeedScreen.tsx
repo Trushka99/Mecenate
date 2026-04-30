@@ -47,7 +47,6 @@ export default function FeedScreen() {
     fetchNextPage,
     refetch,
     isError,
-    isFetching,
     isFetchingNextPage,
     isRefetching,
   } = useInfiniteQuery({

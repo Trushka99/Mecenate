@@ -79,7 +79,6 @@ const TierTabs = ({
 
   return (
     <View style={styles.wrapper} onLayout={onLayout}>
-      {/* АНИМИРОВАННЫЙ ФОН */}
       {tabWidth > 0 && (
         <Animated.View
           style={[
